@@ -1,4 +1,4 @@
-## To install Node.js
+<img width="1026" height="437" alt="image" src="https://github.com/user-attachments/assets/b7a5fe92-6caa-49f2-ac13-af0b4ba20d24" />## To install Node.js
 
 download & install from <a href="http://www.nodejs.org" >http://www.nodejs.org </a>  
 couldn't remember how i did the installation, but leave everything default and you'll be fine  
@@ -41,7 +41,22 @@ Make sure you select **msi file** instead of the zip file.
 To check it, open command prompt and type  
 `mongosh`  
 then hit enter
+> you'll see `test>`
 
+
+To try out the basics
+-----------------------
+
+after running mongosh in the previous one, type the following
+`use school`  
+
+`db.students.insertMany([
+       { id: 1, name: "John Doe", age: 22 },
+       { id: 2, name: "Jane Smith", age: 20 },
+       { id: 3, name: "Sam Brown", age: 23 }
+   ]);`
+   
+and hit enter  
 
 initialize the nodejs package (if starting out fresh):
 ----------------------------------------------------------------
