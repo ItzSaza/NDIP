@@ -1,4 +1,4 @@
-<img width="1026" height="437" alt="image" src="https://github.com/user-attachments/assets/b7a5fe92-6caa-49f2-ac13-af0b4ba20d24" />## To install Node.js
+## To install Node.js
 
 download & install from <a href="http://www.nodejs.org" >http://www.nodejs.org </a>  
 couldn't remember how i did the installation, but leave everything default and you'll be fine  
@@ -47,16 +47,31 @@ then hit enter
 To try out the basics
 -----------------------
 
-after running mongosh in the previous one, type the following
+after running mongosh in the previous one, type the following  
 `use school`  
+hit enter  
 
 `db.students.insertMany([
        { id: 1, name: "John Doe", age: 22 },
        { id: 2, name: "Jane Smith", age: 20 },
        { id: 3, name: "Sam Brown", age: 23 }
-   ]);`
-   
+   ]);`  
 and hit enter  
+
+after that, open mongodb compass  
+you'll see this  
+<img width="50%" height="557" alt="image" src="https://github.com/user-attachments/assets/5f8777ca-cf82-4b53-9465-17332e606fd0" />
+
+>database is now initialized, now open the dump1 folder in the cloned project folder on VS Code
+>take a new terminal window and 
+type the following
+
+`node index.js`  
+then hit enter  
+>important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
+to exit, press `Ctrl+C`
+
+
 
 initialize the nodejs package (if starting out fresh):
 ----------------------------------------------------------------
