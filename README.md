@@ -11,6 +11,7 @@ that means you have installed Node.JS
 `https://github.com/BihanDoo/NDIP.git`  or
 `git clone https://github.com/BihanDoo/NDIP.git`  
 
+###important- dont run the root folder yet, the assignment is not complete
 to run, open a terminal in vs code, (make sure ur using the correct folder)  
 type the following  
 `node index.js`  
