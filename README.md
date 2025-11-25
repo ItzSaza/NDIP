@@ -11,13 +11,13 @@ boom! command line!
 (now close it)
 
 
-to run, open a terminal in vs code, (make sure ur using the correct folder)
+to run, open a terminal in vs code, (make sure ur using the correct folder)  
 type the following
 
 `node index.js`
 
 
-initialize a package:
+initialize a package (if starting out fresh):
 ----------------------------------------------------------------
 package is already created so don't do this on the files on the github repo, however if you are starting out fresh, do the following
 
