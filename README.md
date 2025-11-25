@@ -8,32 +8,13 @@ you'll see an application is installed when searching Node on windows search bar
 
 boom! command line!
 
-
 (now close it)
 
 
-
-
-
-to run, type "cmd" on the search bar and enter
-in the opened command prompt,, type the following
+to run, open a terminal in vs code, (make sure ur using the correct folder)
+type the following
 
 `node index.js`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 initialize a package:
