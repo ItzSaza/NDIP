@@ -38,7 +38,8 @@ Download it from here
 <a href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell<a/>    
 Make sure you select **msi file** instead of the zip file.
 
-> the MongoDB service will be running after the installation.  
+> the MongoDB service will be running after the installation.
+
 To check it, open command prompt and type  
 `mongosh`  
 then hit enter
@@ -52,7 +53,9 @@ To try out the basics
 after running mongosh in the previous one, type the following  
 `use school`  
 hit enter  
-
+you should see this  
+<img width="341" height="114" alt="image" src="https://github.com/user-attachments/assets/b016aa2f-16c2-4ef3-99c0-a90a6856117d" />  
+then type  
 `db.students.insertMany([
        { id: 1, name: "John Doe", age: 22 },
        { id: 2, name: "Jane Smith", age: 20 },
@@ -66,14 +69,14 @@ you'll see this
 
 >database is now initialized, which is running on port `27017`
 
-open VS code, open a new terminal window and 
+open VS code, make sure you are in the **dump1** folder, open a new terminal window and 
 type the following
 
-`node index.js`  
+`node app.js`  
 then hit enter  
 >important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy on port 3000 to access it as a server backend.  
-to exit, press `Ctrl+C`  
-
+if you want, you can exit the process by pressing `Ctrl+C`,
+  
 after that, go to index.html and open it as live server. feel free to mess around with those values and see how it changes in this dump folder  
  
 >total ports allocated:  
