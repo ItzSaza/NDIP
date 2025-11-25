@@ -75,3 +75,5 @@ is this OK?(yes)
 `npm install --save body-parser`
 
 `npm install -g nodemon`
+
+`npm install cors`
