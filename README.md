@@ -1,6 +1,12 @@
 download & install nodejs http://www.nodejs.org <img width="564" height="105" alt="image" src="https://github.com/user-attachments/assets/ff233574-2b46-4001-9267-9780397bf0db" />
+
+
 you'll see an application is installed when searching Node on windows search bar, open it
+
+
 boom! command line!
+
+
 (now close it)
 
 
