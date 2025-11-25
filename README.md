@@ -1,25 +1,22 @@
-## To run it
+## To install Node.js
 
-download & install nodejs http://www.nodejs.org
+download & install from <a href="http://www.nodejs.org" >http://www.nodejs.org </a>  
+couldn't remember how i did the installation, but leave everything default and you'll be fine  
 
-
-you'll see an application is installed when searching Node on windows search bar, open it
-
-
-boom! command line!
-
-(now close it)
-
+you'll see an application is installed when searching Node on windows search bar, open it  
+boom! command line!  
+that means you have installed Node.JS  
+(now close it)  
+### clone the repo
+`https://github.com/BihanDoo/NDIP.git`  or
+`git clone https://github.com/BihanDoo/NDIP.git`  
 
 to run, open a terminal in vs code, (make sure ur using the correct folder)  
-type the following
-
-`node index.js`
-
-then hit enter
+type the following  
+`node index.js`  
+then hit enter  
 >important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
-to exit, press `Ctrl+C`
-
+to exit, press `Ctrl+C`  
 
 initialize a package (if starting out fresh):
 ----------------------------------------------------------------
