@@ -1,42 +1,49 @@
-## To run it
+## To install Node.js
 
-download & install nodejs http://www.nodejs.org
+download & install from <a href="http://www.nodejs.org" >http://www.nodejs.org </a>  
+couldn't remember how i did the installation, but leave everything default and you'll be fine  
 
+you'll see an application is installed when searching Node on windows search bar, open it  
+boom! command line!  
+that means you have installed Node.JS  
+(now close it)  
+### clone the repo
+`https://github.com/BihanDoo/NDIP.git`  or
+`git clone https://github.com/BihanDoo/NDIP.git`  
 
-you'll see an application is installed when searching Node on windows search bar, open it
-
-
-boom! command line!
-
-
-(now close it)
-
-
-
-
-
-to run, type "cmd" on the search bar and enter
-in the opened command prompt,, type the following
-
-`node index.js`
+to run, open a terminal in vs code, (make sure ur using the correct folder)  
+type the following  
+`node index.js`  
+then hit enter  
+>important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
+to exit, press `Ctrl+C`
 
 
 
+Install MongoDB
+-------------------
+Download the windows msi from here:  
+<a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a>  
+1. Select Complete setup.
+2. Keep "Install MongoDB as a Service" checked
+> This makes MongoDB automatically run in the background.
+3. Leave default service name/settings.
+4. Keep MongoDB Compass checked (optional but useful GUI tool).
+
+Click Install.  
+
+### install the shell (mongo shell)  
+Download it from here  
+<a href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell<a/>    
+Make sure you select **msi file** instead of the zip file.
+
+> the MongoDB service will be running after the installation.  
+To check it, open command prompt and type  
+`mongosh`  
+then hit enter
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-initialize a package:
+initialize the nodejs package (if starting out fresh):
 ----------------------------------------------------------------
 package is already created so don't do this on the files on the github repo, however if you are starting out fresh, do the following
 
@@ -75,3 +82,13 @@ is this OK?(yes)
 `npm install --save body-parser`
 
 `npm install -g nodemon`
+
+`npm install cors`
+
+  
+>to connect with mongoDB
+
+`npm install mongodb`
+
+
+
