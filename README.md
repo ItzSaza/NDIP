@@ -35,15 +35,12 @@ Click Install.
 ### install the shell (mongo shell)  
 Download it from here  
 <a href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell<a/>    
+Make sure you select **msi file** instead of the zip file.
 
-
-the MongoDB service will be running after the installation  
-to check it, open command prompt and type
+> the MongoDB service will be running after the installation.  
+To check it, open command prompt and type  
 `mongosh`  
 then hit enter
-
-
-
 
 
 initialize the nodejs package (if starting out fresh):
