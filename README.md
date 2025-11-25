@@ -79,7 +79,7 @@ NodeJS BackEnd `3000`
 Live server (if running) `5500`  
 
 
-initialize the nodejs package (if starting out fresh):
+initialize the nodejs package (if starting out fresh-from scratch):
 ----------------------------------------------------------------
 package is already created so don't do this on the files on the github repo,
   
