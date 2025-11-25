@@ -1,4 +1,4 @@
-## To install Node.js
+## Install Node.js
 
 download & install from <a href="http://www.nodejs.org" >http://www.nodejs.org </a>  
 couldn't remember how i did the installation, but leave everything default and you'll be fine  
