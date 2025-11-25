@@ -1,4 +1,4 @@
-download & install nodejs http://www.nodejs.org <img width="564" height="105" alt="image" src="https://github.com/user-attachments/assets/ff233574-2b46-4001-9267-9780397bf0db" />
+download & install nodejs http://www.nodejs.org
 
 
 you'll see an application is installed when searching Node on windows search bar, open it
@@ -16,7 +16,7 @@ boom! command line!
 to run, type "cmd" on the search bar and enter
 in the opened command prompt,, type the following
 
->node index.js
+`node index.js`
 
 
 
@@ -68,8 +68,8 @@ is this OK?(yes)
 > install these services:
 
 
->npm install express -save
+`npm install express -save`
 
->npm install --save body-parser
+`npm install --save body-parser`
 
->npm install -g nodemon
+`npm install -g nodemon`
