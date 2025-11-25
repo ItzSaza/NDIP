@@ -84,3 +84,11 @@ is this OK?(yes)
 `npm install -g nodemon`
 
 `npm install cors`
+
+  
+>to connect with mongoDB
+
+`npm install mongodb`
+
+
+
