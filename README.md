@@ -28,8 +28,11 @@ node index.js
 
 
 
-package is already created so don't do this on the files on the github repo, however if you want to,
-initialize a package:------------------------------------------
+
+
+initialize a package:
+----------------------------------------------------------------
+package is already created so don't do this on the files on the github repo, however if you want to, do the following
 
 
 
@@ -57,6 +60,6 @@ is this OK?(yes)
 
 
 this will create a package.json
-------------------------------------------------------------------
+
 
 
