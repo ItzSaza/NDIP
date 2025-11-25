@@ -62,15 +62,21 @@ after that, open mongodb compass
 you'll see this  
 <img width="50%" height="557" alt="image" src="https://github.com/user-attachments/assets/5f8777ca-cf82-4b53-9465-17332e606fd0" />
 
->database is now initialized, now open the dump1 folder in the cloned project folder on VS Code
+>database is now initialized, which is running on port `27017` now open the dump1 folder in the cloned project folder on VS Code
 >take a new terminal window and 
 type the following
 
 `node index.js`  
 then hit enter  
->important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
-to exit, press `Ctrl+C`
+>important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy on port 3000 to access it as a server backend.  
+to exit, press `Ctrl+C`  
 
+after that, go to index.html and open it as live server. feel free to mess around with those values and see how it changes in this dump folder  
+ 
+>total ports allocated:  
+MongoDB `27017`  
+NodeJS BackEnd `3000`  
+Live server (if running) `5500`  
 
 
 initialize the nodejs package (if starting out fresh):
