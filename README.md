@@ -16,6 +16,10 @@ type the following
 
 `node index.js`
 
+then hit enter
+>important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
+to exit, press `Ctrl+C`
+
 
 initialize a package (if starting out fresh):
 ----------------------------------------------------------------
