@@ -1,0 +1,122 @@
+<section id="support" class="py-5 bg-white">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="section-title mb-3">Need help?</h2>
+          <p>
+            Use the form to request support.
+          </p>
+          <form id="supportForm" data-endpoint="/api/support">
+            <div class="mb-3">
+              <label class="form-label">Full name</label>
+              <input type="text" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Issue</label>
+              <textarea class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Submit request
+            </button>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 border rounded-3 bg-light">
+            <h5 class="mb-3">Live system status</h5>
+            <p class="text-muted small">
+              Placeholder badges show how realtime data can be plugged in
+              later.
+            </p>
+            <div class="d-flex flex-wrap gap-2" id="statusBadges">
+              <span class="badge text-bg-success" data-status="core"
+                >Core platform</span
+              >
+              <span class="badge text-bg-success" data-status="api"
+                >API Gateway</span
+              >
+              <span class="badge text-bg-warning text-dark" data-status="ivr"
+                >Hotline</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="p-4 service-card h-100">
+        <h5>Update Citizen Details</h5>
+        <form class="row g-3 citizen-form" data-endpoint="/api/citizens/update">
+          <div class="col-12">
+            <label class="form-label">NDI ID</label>
+            <input type="text" class="form-control" required />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">New NDI ID</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">New First Name</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">
+              Update Citizen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="p-4 service-card h-100">
+        <h5>Delete Citizen</h5>
+        <form class="row g-3 citizen-form" data-endpoint="/api/citizens/delete">
+          <div class="col-12">
+            <label class="form-label">NDI ID</label>
+            <input type="text" class="form-control" required />
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-outline-primary">
+              Delete Citizen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
