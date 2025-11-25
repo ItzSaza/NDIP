@@ -48,6 +48,7 @@ then hit enter
 To try out the basics
 -----------------------
 
+#### now open the dump1 folder in the cloned project folder on VS Code
 after running mongosh in the previous one, type the following  
 `use school`  
 hit enter  
@@ -63,8 +64,9 @@ after that, open mongodb compass
 you'll see this  
 <img width="50%" height="557" alt="image" src="https://github.com/user-attachments/assets/5f8777ca-cf82-4b53-9465-17332e606fd0" />
 
->database is now initialized, which is running on port `27017` now open the dump1 folder in the cloned project folder on VS Code
->take a new terminal window and 
+>database is now initialized, which is running on port `27017`
+
+open VS code, open a new terminal window and 
 type the following
 
 `node index.js`  
