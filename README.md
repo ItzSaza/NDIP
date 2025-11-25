@@ -31,6 +31,12 @@ Download the windows msi from here:
 4. Keep MongoDB Compass checked (optional but useful GUI tool).
 
 Click Install.  
+
+### install the shell (mongo shell)  
+Download it from here  
+<a href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell<a/>    
+
+
 the MongoDB service will be running after the installation  
 to check it, open command prompt and type
 `mongosh`  
