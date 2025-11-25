@@ -16,9 +16,31 @@ type the following
 `node index.js`  
 then hit enter  
 >important! dont be panic if the command line looks stuck, but it's not. it has created a socket-like thingy to access it as a server.  
-to exit, press `Ctrl+C`  
+to exit, press `Ctrl+C`
 
-initialize a package (if starting out fresh):
+
+
+Install MongoDB
+-------------------
+Download the windows msi from here:  
+<a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a>  
+1. Select Complete setup.
+2. Keep "Install MongoDB as a Service" checked
+> This makes MongoDB automatically run in the background.
+3. Leave default service name/settings.
+4. Keep MongoDB Compass checked (optional but useful GUI tool).
+
+Click Install.  
+the MongoDB service will be running after the installation  
+to check it, open command prompt and type
+`mongosh`  
+then hit enter
+
+
+
+
+
+initialize the nodejs package (if starting out fresh):
 ----------------------------------------------------------------
 package is already created so don't do this on the files on the github repo, however if you are starting out fresh, do the following
 
