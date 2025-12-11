@@ -6,20 +6,20 @@ let port = process.env.port || 3000;
 let router = express.Router();
 
 // MongoDB connection string - update this with your MongoDB URI
-const mongoURI = process.env.MONGODB_URI || "mongodb://localhost:27017";
-const dbName = "school";
-const collectionName = "students";
+const mongoURI = "mongodb://localhost:27017";
+const dbName = "citizens";
+const collectionName = "citizens";
 
 let db;
-let students;
 let citizens;
 
 // Connect to MongoDB
 MongoClient.connect(mongoURI)
     .then(client => {
         console.log("Connected to MongoDB");
-        db = client.db(dbName);
-         students = db.collection(collectionName);
+    db = client.db(dbName);
+    // Initialize the citizens collection reference once after connecting
+    citizens = db.collection(collectionName);
         
         // Start server after MongoDB connection
         app.listen(port, () => {
@@ -34,32 +34,32 @@ MongoClient.connect(mongoURI)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/student', router);
+app.use('/api/citizens', router);
 
-// Get all students
+// Get all citizens
 router.get('/', async (req, res) => {
     try {
-        const studentsList = await students.find({}).toArray();
-        res.json(studentsList);
+        const citizensList = await citizens.find({}).toArray();
+        res.json(citizensList);
     } catch (error) {
-        console.error("Error fetching students:", error);
-        res.status(500).send('Error fetching students');
+        console.error("Error fetching citizens:", error);
+        res.status(500).send('Error fetching citizens');
     }
 });
 
-// Get student by ID
+// Get citizen by ID
 router.get('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
-        const student = await students.findOne({ id: id });
-        if (student) {
-            res.json(student);
+        const citizen = await citizens.findOne({ id: id });
+        if (citizen) {
+            res.json(citizen);
         } else {
-            res.status(404).send('Student not found');
+            res.status(404).send('Citizen not found');
         }
     } catch (error) {
-        console.error("Error fetching student:", error);
-        res.status(500).send('Error fetching student');
+        console.error("Error fetching citizen:", error);
+        res.status(500).send('Error fetching citizen');
     }
 });
 

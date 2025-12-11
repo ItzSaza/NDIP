@@ -38,42 +38,42 @@
               <form id="registerForm" class="row g-3" data-endpoint="/api/citizens/register">
                 <div class="col-md-6">
                   <label class="form-label">First Name</label>
-                  <input type="text" class="form-control" name="FirstName" required />
+                  <input type="text" class="form-control" name="FirstName" value="test1" required />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Last Name</label>
-                  <input type="text" class="form-control" name="LastName" required />
+                  <input type="text" class="form-control" name="LastName" value="test1" required />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Date Of Birth</label>
-                  <input type="date" class="form-control" name="DoB" required />
+                  <input type="date" class="form-control" name="DoB" value="2000-12-12" required />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Email</label>
-                  <input type="email" class="form-control" name="Email" />
+                  <input type="email" class="form-control" value="test1@test1.com" name="Email" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Phone</label>
-                  <input type="tel" class="form-control" name="Phone" />
+                  <input type="tel" class="form-control" value="1234567489" name="Phone" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Occupation</label>
-                  <input type="text" class="form-control" name="Occupation" />
+                  <input type="text" class="form-control" value="test1" name="Occupation" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Nationality</label>
-                  <input type="text" class="form-control" name="Nationality" />
+                  <input type="text" class="form-control" value="test1" name="Nationality" />
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Blood Group</label>
-                  <select class="form-select" name="Blood_Group">
+                  <select class="form-select" value="test1" name="Blood_Group">
                     <option value="">Select</option>
                     <option>A+</option>
                     <option>A-</option>
@@ -107,15 +107,20 @@
       (function () {
         $("#registerForm").on("submit", function (e) {
           e.preventDefault();
-          var endpoint = $(this).data('endpoint');
+          // Allow the form to specify the endpoint via data-endpoint on the form
+          var endpoint = '/api/citizens/register';
           var data = {};
           $(this).serializeArray().forEach(function (field) { data[field.name] = field.value; });
 
           var $result = $("#resultAreaRegister");
           $result.text('Loading...');
+          const API_BASE = 'http://localhost:3000';
 
+          // Build full URL: if endpoint already contains a full URL, use it, otherwise join with API_BASE
+          var url =  (API_BASE + endpoint);
+//(typeof endpoint === 'string' && endpoint.match(/^https?:\/\//i)) ? endpoint :
           $.ajax({
-            url: endpoint,
+            url: url,
             method: 'POST',
             data: data,
             dataType: 'json',
