@@ -1,6 +1,7 @@
 let express = require("express");
 let cors = require("cors");
 let { MongoClient } = require("mongodb");
+let path = require("path");
 let app = express();
 let port = process.env.port || 3000;
 let router = express.Router();
@@ -34,6 +35,7 @@ MongoClient.connect(mongoURI)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '..')));  // Serve static files from parent directory
 app.use('/api/citizens', router);
 
 // Get all citizens
@@ -66,10 +68,13 @@ router.get('/:id', async (req, res) => {
 // Register a new citizen
 app.post('/api/citizens/register', async (req, res) => {
     try {
+        console.log('Register endpoint hit');
+        console.log('Request body:', req.body);
         const payload = req.body || {};
 
         // Basic required fields check (FirstName, LastName, DoB)
         if (!payload.FirstName || !payload.LastName || !payload.DoB) {
+            console.log('Missing required fields');
             return res.status(400).json({ error: 'Missing required fields: FirstName, LastName, DoB' });
         }
 
@@ -81,9 +86,14 @@ app.post('/api/citizens/register', async (req, res) => {
         payload.createdAt = new Date();
 
         // Ensure citizens collection exists
-        if (!citizens) citizens = db.collection('citizens');
+        if (!citizens) {
+            console.log('Citizens collection not initialized, initializing now...');
+            citizens = db.collection('citizens');
+        }
 
+        console.log('Inserting into MongoDB:', payload);
         const result = await citizens.insertOne(payload);
+        console.log('Insert successful, id:', result.insertedId);
         res.json({ success: true, nid: payload.NID, id: result.insertedId });
     } catch (error) {
         console.error('Error registering citizen:', error);
@@ -94,14 +104,28 @@ app.post('/api/citizens/register', async (req, res) => {
 // Simple login endpoint (lookup by NID)
 app.post('/api/login', async (req, res) => {
     try {
+        console.log('Login endpoint hit');
+        console.log('Request body:', req.body);
         const { nid, NID, password } = req.body || {};
         const lookup = nid || NID;
-        if (!lookup) return res.status(400).json({ error: 'Missing nid' });
+        if (!lookup) {
+            console.log('Missing nid parameter');
+            return res.status(400).json({ error: 'Missing nid' });
+        }
 
-        if (!citizens) citizens = db.collection('citizens');
+        if (!citizens) {
+            console.log('Citizens collection not initialized, initializing now...');
+            citizens = db.collection('citizens');
+        }
 
+        console.log('Looking up user with NID:', lookup);
         const user = await citizens.findOne({ $or: [{ NID: lookup }, { nid: lookup }] });
-        if (!user) return res.status(404).json({ error: 'User not found' });
+        if (!user) {
+            console.log('User not found for NID:', lookup);
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        console.log('User found:', user);
 
         // NOTE: Password check is not implemented here because the registration form
         // does not include a password field. For production, store and verify hashed
