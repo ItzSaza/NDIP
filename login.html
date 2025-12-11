@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login • National Digital Identity Portal</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="indexstyle.css" />
+    <link rel="stylesheet" href="loginstyle.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html"
+          >National Digital Identity Portal</a
+        >
+        <div class="ms-auto d-flex gap-2">
+          <a class="btn btn-outline-primary btn-sm" href="index.html">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="login-container">
+      <div class="login-card bg-white">
+        <div class="login-header">
+          <h2>Welcome Back</h2>
+          <p>Sign in to access the NDI Portal</p>
+        </div>
+
+        <form id="loginForm" data-endpoint="/api/login">
+          <div class="mb-3">
+            <label for="nid" class="form-label">National ID (NID)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nid"
+              name="nid"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              required
+            />
+          </div>
+
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="remember"
+              name="remember"
+            />
+            <label class="form-check-label" for="remember">
+              Remember me
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mb-3">
+            Sign In
+          </button>
+        </form>
+
+        
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-3gJwYp4Z3+4oa4rYJDc6Xk9FfuH6Yz9EM8mL0Q5rx1w="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        $("#loginForm").on("submit", function (event) {
+          event.preventDefault();
+          const endpoint = $(this).data("endpoint");
+          const nid = $("#nid").val();
+          const password = $("#password").val();
+
+          // Placeholder for future AJAX call
+          alert("Login request prepared for " + nid);
+          // Replace with: $.ajax({ url: endpoint, method: 'POST', data: { nid, password }, ... })
+        });
+      })();
+    </script>
+  </body>
+</html>
