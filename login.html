@@ -73,6 +73,7 @@
         </form>
 
         
+        <div id="resultAreaLogin" class="mt-2 small text-break text-center"></div>
       </div>
     </div>
 
@@ -94,9 +95,21 @@
           const nid = $("#nid").val();
           const password = $("#password").val();
 
-          // Placeholder for future AJAX call
-          alert("Login request prepared for " + nid);
-          // Replace with: $.ajax({ url: endpoint, method: 'POST', data: { nid, password }, ... })
+          const $result = $("#resultAreaLogin");
+          $result.text('Loading...');
+
+          $.ajax({
+            url: endpoint,
+            method: 'POST',
+            data: { nid: nid, password: password },
+            dataType: 'json',
+            success: function(resp) {
+              $result.text(JSON.stringify(resp, null, 2));
+            },
+            error: function(xhr, status, error) {
+              $result.text('Error: ' + error + '\nStatus: ' + xhr.status + '\nResponse: ' + xhr.responseText);
+            }
+          });
         });
       })();
     </script>

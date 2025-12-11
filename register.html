@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register Citizen • NDI Portal</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="indexstyle.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg shadow-sm py-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">National Digital Identity Portal</a>
+        <div class="ms-auto d-flex gap-2">
+          <a class="btn btn-outline-primary btn-sm" href="index.html">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero text-center">
+      <div class="container">
+        <p class="text-uppercase text-white-50 mb-2">Registration</p>
+        <h1 class="fw-semibold">Register a New Citizen</h1>
+        <p class="mb-0">Fill the form below to add a new registered citizen to the system.</p>
+      </div>
+    </header>
+
+    <main class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card p-4">
+              <form id="registerForm" class="row g-3" data-endpoint="/api/citizens/register">
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" name="FirstName" required />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" name="LastName" required />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Date Of Birth</label>
+                  <input type="date" class="form-control" name="DoB" required />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" name="Email" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Phone</label>
+                  <input type="tel" class="form-control" name="Phone" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Occupation</label>
+                  <input type="text" class="form-control" name="Occupation" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Nationality</label>
+                  <input type="text" class="form-control" name="Nationality" />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Blood Group</label>
+                  <select class="form-select" name="Blood_Group">
+                    <option value="">Select</option>
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                  </select>
+                </div>
+
+                <div class="col-12 d-flex gap-2">
+                  <button type="submit" class="btn btn-primary">Register Citizen</button>
+                  <a href="index.html" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+              </form>
+
+              <pre id="resultAreaRegister" class="mt-3 small text-break"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-3gJwYp4Z3+4oa4rYJDc6Xk9FfuH6Yz9EM8mL0Q5rx1w=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      (function () {
+        $("#registerForm").on("submit", function (e) {
+          e.preventDefault();
+          var endpoint = $(this).data('endpoint');
+          var data = {};
+          $(this).serializeArray().forEach(function (field) { data[field.name] = field.value; });
+
+          var $result = $("#resultAreaRegister");
+          $result.text('Loading...');
+
+          $.ajax({
+            url: endpoint,
+            method: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(resp) {
+              $result.text(JSON.stringify(resp, null, 2));
+            },
+            error: function(xhr, status, error) {
+              $result.text('Error: ' + error + '\nStatus: ' + xhr.status + '\nResponse: ' + xhr.responseText);
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
