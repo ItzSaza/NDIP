@@ -92,7 +92,27 @@
                 </div>
               </form>
 
-              <pre id="resultAreaRegister" class="mt-3 small text-break"></pre>
+              <div id="alertAreaRegister" class="mt-3"></div>
+
+              <!-- Success modal shown after successful registration -->
+              <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Registration Successful</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p id="modalMessage">Your account was registered successfully.</p>
+                      <p><strong>NID:</strong> <span id="modalNID"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="copyNidBtn" type="button" class="btn btn-secondary">Copy NID</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -106,7 +126,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('registerForm');
-        const resultArea = document.getElementById('resultAreaRegister');
+        const alertArea = document.getElementById('alertAreaRegister');
         
         if (!form) {
           console.error('Form not found!');
@@ -121,7 +141,7 @@
           const data = Object.fromEntries(formData);
           
           console.log('Submitting data:', data);
-          resultArea.textContent = 'Loading...';
+          alertArea.innerHTML = '<div class="alert alert-info" role="alert">Submitting...</div>';
           
           fetch('http://localhost:3000/api/citizens/register', {
             method: 'POST',
@@ -133,12 +153,59 @@
           .then(resp => resp.json())
           .then(json => {
             console.log('Success:', json);
-            resultArea.textContent = JSON.stringify(json, null, 2);
+            if (json && json.success) {
+              const msg = 'Registration successful';
+
+              // Build simple full-page success view and replace page content
+              const successHtml = `
+                <div class="d-flex vh-100 align-items-center justify-content-center bg-light">
+                  <div class="text-center p-4">
+                    <h1 class="text-success mb-3">Registration successful</h1>
+                    <a href="index.html" class="btn btn-primary">Home</a>
+                  </div>
+                </div>
+              `;
+
+              document.body.innerHTML = successHtml;
+            } else {
+              const err = (json && (json.error || json.message)) || 'Unknown response';
+              alertArea.innerHTML = `<div class="alert alert-danger" role="alert">${err}</div>`;
+            }
           })
           .catch(error => {
             console.error('Error:', error);
-            resultArea.textContent = 'Error: ' + error.message;
+            alertArea.innerHTML = `<div class="alert alert-danger" role="alert">Error: ${error.message}</div>`;
           });
+        });
+      });
+    </script>
+    <script>
+      // Copy NID button handler
+      document.addEventListener('DOMContentLoaded', function () {
+        const copyBtn = document.getElementById('copyNidBtn');
+        if (!copyBtn) return;
+        copyBtn.addEventListener('click', function () {
+          const nid = document.getElementById('modalNID').textContent || '';
+          if (!nid) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(nid).then(function () {
+              copyBtn.textContent = 'Copied';
+              setTimeout(function () { copyBtn.textContent = 'Copy NID'; }, 2000);
+            }).catch(function () {
+              copyBtn.textContent = 'Copy failed';
+              setTimeout(function () { copyBtn.textContent = 'Copy NID'; }, 2000);
+            });
+          } else {
+            // fallback copy method
+            const textarea = document.createElement('textarea');
+            textarea.value = nid;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try { document.execCommand('copy'); copyBtn.textContent = 'Copied'; }
+            catch (e) { copyBtn.textContent = 'Copy failed'; }
+            document.body.removeChild(textarea);
+            setTimeout(function () { copyBtn.textContent = 'Copy NID'; }, 2000);
+          }
         });
       });
     </script>
