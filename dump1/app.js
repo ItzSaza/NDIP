@@ -12,6 +12,7 @@ const collectionName = "students";
 
 let db;
 let students;
+let citizens;
 
 // Connect to MongoDB
 MongoClient.connect(mongoURI)
@@ -32,6 +33,7 @@ MongoClient.connect(mongoURI)
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/api/student', router);
 
 // Get all students
@@ -58,5 +60,59 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         console.error("Error fetching student:", error);
         res.status(500).send('Error fetching student');
+    }
+});
+
+// Register a new citizen
+app.post('/api/citizens/register', async (req, res) => {
+    try {
+        const payload = req.body || {};
+
+        // Basic required fields check (FirstName, LastName, DoB)
+        if (!payload.FirstName || !payload.LastName || !payload.DoB) {
+            return res.status(400).json({ error: 'Missing required fields: FirstName, LastName, DoB' });
+        }
+
+        // Generate a simple NID for the demo if not provided
+        if (!payload.NID) {
+            payload.NID = 'NID' + Date.now().toString().slice(-8);
+        }
+
+        payload.createdAt = new Date();
+
+        // Ensure citizens collection exists
+        if (!citizens) citizens = db.collection('citizens');
+
+        const result = await citizens.insertOne(payload);
+        res.json({ success: true, nid: payload.NID, id: result.insertedId });
+    } catch (error) {
+        console.error('Error registering citizen:', error);
+        res.status(500).json({ error: 'Error registering citizen' });
+    }
+});
+
+// Simple login endpoint (lookup by NID)
+app.post('/api/login', async (req, res) => {
+    try {
+        const { nid, NID, password } = req.body || {};
+        const lookup = nid || NID;
+        if (!lookup) return res.status(400).json({ error: 'Missing nid' });
+
+        if (!citizens) citizens = db.collection('citizens');
+
+        const user = await citizens.findOne({ $or: [{ NID: lookup }, { nid: lookup }] });
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        // NOTE: Password check is not implemented here because the registration form
+        // does not include a password field. For production, store and verify hashed
+        // passwords. This endpoint simply returns the user document on match.
+        // Remove sensitive fields before returning if necessary.
+
+        // Exclude internal MongoDB fields if desired
+        const { _id, ...safeUser } = user;
+        res.json({ success: true, user: safeUser });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ error: 'Login error' });
     }
 });
